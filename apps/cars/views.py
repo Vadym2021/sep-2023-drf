@@ -127,15 +127,9 @@ class CarListCreateView(ListCreateAPIView):
     serializer_class = CarSerializer
 
     def get_queryset(self):
-        qs = car_filter(self.request.query_params.dict())
-        sort_by = self.request.query_params.get('sort_by')
-        if sort_by:
-            if sort_by.startswith('-'):
-                qs = qs.order_by(sort_by[1:], desc=True)
-            else:
-                qs = qs.order_by(sort_by)
-
+        qs = car_filter(self.request.query_params)
         return qs
+
 
 
 class CarRetriveUpdateDestroyView(RetrieveUpdateDestroyAPIView):

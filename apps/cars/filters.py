@@ -5,20 +5,17 @@ from rest_framework.exceptions import ValidationError
 from apps.cars.models import CarModel
 
 
-# def car_filter(query: QueryDict) -> QuerySet:
-#     qs = CarModel.objects.all()
-#     for k, v, in query.items():
-#         match k:
-#             case 'price_gt':
-#                 qs = qs.filter(price__gt=v)
-#             case 'brand_contains':
-#                 qs = qs.filter(brand__icontains=v)
-#             case _:
-#                 raise ValidationError(f"{k} is not valid")
-#     return qs
-
 def car_filter(query: QueryDict) -> QuerySet:
     qs = CarModel.objects.all()
+    sort_by = query.get('sort_by')
+    if sort_by:
+        if sort_by.startswith('-'):
+            sort_field = sort_by[1:]
+            qs = qs.order_by(f'-{sort_field}')
+        else:
+            qs = qs.order_by(sort_by)
+        return qs
+
     for k, v in query.items():
         match k:
             case 'price_gt':
@@ -39,3 +36,4 @@ def car_filter(query: QueryDict) -> QuerySet:
                 raise ValidationError(f"{k} is not a valid filter")
 
     return qs
+
