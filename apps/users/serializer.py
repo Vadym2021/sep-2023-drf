@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from apps.auto_parks.serializer import AutoParkSerializer
-from apps.Users.models import UserModel
+from apps.users.models import UserModel
 
 
 class UserSerializer(serializers.ModelSerializer):

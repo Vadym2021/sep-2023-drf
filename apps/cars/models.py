@@ -11,5 +11,5 @@ class CarModel(BaseModel):
     brand = models.CharField(max_length=50)
     price = models.IntegerField()
     year = models.IntegerField()
-    auto_park = models.ForeignKey(AutoParkModel, on_delete=models.CASCADE, related_name='cars')
+    auto_park = models.ForeignKey(AutoParkModel, on_delete=models.CASCADE, related_name='users')
 
