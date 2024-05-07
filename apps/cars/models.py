@@ -1,4 +1,6 @@
 from django.db import models
+
+from apps.auto_parks.models import AutoParkModel
 from core.models import BaseModel
 
 
@@ -9,6 +11,5 @@ class CarModel(BaseModel):
     brand = models.CharField(max_length=50)
     price = models.IntegerField()
     year = models.IntegerField()
-    seats = models.IntegerField()
-    chasis = models.CharField(max_length=50)
-    engine = models.FloatField()
+    auto_park = models.ForeignKey(AutoParkModel, on_delete=models.CASCADE, related_name='cars')
+
