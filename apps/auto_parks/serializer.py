@@ -11,3 +11,12 @@ class AutoParkSerializer(serializers.ModelSerializer):
         model = AutoParkModel
         fields = ('id', 'name', 'cars')
         depth = 1
+
+class AutoParkWithoutCars(serializers.ModelSerializer):
+    cars = CarSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = AutoParkModel
+        fields = ('id', 'name')
+
+
