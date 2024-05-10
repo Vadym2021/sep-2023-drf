@@ -1,5 +1,3 @@
-
-
 from django_filters import rest_framework as filters
 
 
@@ -10,10 +8,11 @@ class CarFilter(filters.FilterSet):
     order = filters.OrderingFilter(
         fields=(
             'id',
-            'price'
+            'price',
+            ('year', 'asd')
+            # Если надо переназвать год на асд, тогд можна сортировать по асд в квери, но фактически по году
         )
     )
-
 
 # from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # from django.db.models import QuerySet
