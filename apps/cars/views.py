@@ -8,6 +8,7 @@ from apps.cars.serializers import CarSerializer
 
 class CarListView(ListAPIView):
     queryset = CarModel.objects.all()
+    # queryset = CarModel.objects.get_audi_only() #вызывает кастомный фильтр из managers.py
     serializer_class = CarSerializer
     filterset_class = CarFilter
 

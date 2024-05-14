@@ -5,6 +5,7 @@ from django.db import models
 
 from apps.auto_parks.models import AutoParkModel
 from apps.cars.choises import CarChoises
+from apps.cars.managers import CarManager
 from core.models import BaseModel
 
 
@@ -23,4 +24,6 @@ class CarModel(BaseModel):
     year = models.IntegerField(validators=[V.MinValueValidator(1990),V.MaxValueValidator(datetime.now().year)])
     chassis = models.CharField(max_length=50, choices=[*CarChoises.choices])
     auto_park = models.ForeignKey(AutoParkModel, on_delete=models.CASCADE, related_name='users')
+
+    objects = CarManager()
 
