@@ -7,10 +7,21 @@ from apps.users.models import ProfileModel
 
 UserModel = get_user_model()
 
+
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfileModel
-        fields = ('id', 'name', 'surname', 'age')
+        fields = ('id', 'name', 'surname', 'age', 'avatar')
+
+
+class ProfileAvatarSerializer(serializers.ModelSerializer):
+    avatar = serializers.ImageField()
+
+    class Meta:
+        model = ProfileModel
+        fields = ('avatar',)
+        extra_kwargs = {'avatar': {'required': True}}
+
 
 class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer()
