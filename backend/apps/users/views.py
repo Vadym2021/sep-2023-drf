@@ -17,9 +17,9 @@ UserModel = get_user_model()
 
 
 class UserListCreateView(ListCreateAPIView):
-    serializer_class = UserSerializer
+    # serializer_class = UserSerializer
     queryset = UserModel.objects.all()
-    permission_classes = (IsAuthentificatedOrWriteOnly,)
+    # permission_classes = (IsAuthentificatedOrWriteOnly,)
 
     # def get_permissions(self):
     #     if self.request.method == 'GET':
