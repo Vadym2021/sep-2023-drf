@@ -10,6 +10,7 @@ from core.services.jwt_service import ActivateToken, JWTService, RecoveryToken
 
 UserModel = get_user_model()
 
+
 class EmailService:
     @staticmethod
     @app.task
@@ -42,4 +43,4 @@ class EmailService:
     def spam():
         for user in UserModel.objects.all():
             user: UserDataClass = user
-            EmailService.__send_email(user.email,'spam.html', {'name':user.profile.name}, 'Spam')
+            EmailService.__send_email(user.email, 'spam.html', {'name': user.profile.name}, 'Spam')

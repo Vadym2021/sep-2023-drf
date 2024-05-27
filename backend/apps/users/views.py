@@ -17,8 +17,9 @@ UserModel = get_user_model()
 
 
 class UserListCreateView(ListCreateAPIView):
-    # serializer_class = UserSerializer
+    serializer_class = UserSerializer
     queryset = UserModel.objects.all()
+    permission_classes = [AllowAny]
     # permission_classes = (IsAuthentificatedOrWriteOnly,)
 
     # def get_permissions(self):
@@ -34,6 +35,7 @@ class UserListCreateView(ListCreateAPIView):
 
 
 class UserBlockView(GenericAPIView):
+    serializer_class = UserSerializer
     # queryset = UserModel.objects.all()
     permission_classes = (IsAdminUser,)
 
@@ -51,6 +53,7 @@ class UserBlockView(GenericAPIView):
 
 
 class UserUnBlockView(GenericAPIView):
+    serializer_class = UserSerializer
     # queryset = UserModel.objects.all()
     permission_classes = (IsAdminUser,)
 
@@ -82,6 +85,10 @@ class UserAddAvatarView(UpdateAPIView):
 
 class TestEmailView(GenericAPIView):
     permission_classes = [AllowAny]
+
+    def get_serializer(self, *args, **kwargs):
+        pass
+
     def get(self, *args, **kwargs):
         template = get_template('test_email.html')
         html_content = template.render({'user': 'Max'})
