@@ -33,6 +33,8 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
@@ -46,7 +48,8 @@ INSTALLED_APPS = [
 
     # my apps
     'core',
-    'apps.users'
+    'apps.users',
+    'apps.chat'
 ]
 
 MIDDLEWARE = [
@@ -78,6 +81,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'configs.wsgi.application'
+ASGI_APPLICATION = 'configs.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
