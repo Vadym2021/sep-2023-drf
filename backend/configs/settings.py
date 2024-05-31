@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     # my apps
     'core',
     'apps.users',
-    'apps.chat'
+    'apps.chat',
+    'apps.cars',
 ]
 
 MIDDLEWARE = [
