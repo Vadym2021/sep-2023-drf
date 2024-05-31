@@ -17,6 +17,12 @@ UserModel = get_user_model()
 
 
 class UserListCreateView(ListCreateAPIView):
+    """
+    get:
+        get All users
+    post:
+        create new user
+    """
     serializer_class = UserSerializer
     queryset = UserModel.objects.all()
     permission_classes = [AllowAny]
@@ -84,6 +90,9 @@ class UserAddAvatarView(UpdateAPIView):
 
 
 class TestEmailView(GenericAPIView):
+    """
+    Test Email Endpoint
+    """
     permission_classes = [AllowAny]
 
     def get_serializer(self, *args, **kwargs):
